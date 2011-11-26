@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Installer for App Server
+Author: Thanh Ba Nguyen
+-->
+<project name="AppServer Installer" default="install">
+	<description>
+        Installer for App Server.
+    </description>
+
+	<property environment="env" />
+
+	<!-- directory properties -->
+	<property name="resources.dir" value="../resources" />
+	<property name="resources-lib.dir" value="${resources.dir}/lib" />
+	<property name="resources-groovy.dir" value="${resources.dir}/groovy" />
+	<property name="tomcat.src.dir" value="../Tomcat_7" />
+	<property name="script.templates.dir" value="../resources/script_templates7" />
+
+	<target name="install" description="Install App Server">
+		<!-- check if env CATALINA_HOME is set -->
+		<if>
+			<isset property="env.CATALINA_HOME" />
+			<then>
+				<echo message="Found CATALINA_HOME environment variable: ${env.CATALINA_HOME}." />
+				<property name="install.dir" value="${env.CATALINA_HOME}" />
+			</then>
+			<else>
+				<input message="Install to location?" addproperty="install.dir" />
+			</else>
+		</if>
+
+		<!-- check if installation directory exists -->
+		<available type="dir" file="${install.dir}" property="install.dir.exists" />
+		<if>
+			<istrue value="${install.dir.exists}" />
+			<then>
+				<input message="${install.dir} already exists, override?" addproperty="install.dir.override" validargs="y,n" defaultvalue="y" />
+				<if>
+					<equals arg1="${install.dir.override}" arg2="y" />
+					<then>
+						<property name="continue.installing" value="true" />
+					</then>
+					<else>
+						<property name="continue.installing" value="false" />
+					</else>
+				</if>
+			</then>
+			<else>
+				<property name="continue.installing" value="true" />
+			</else>
+		</if>
+
+		<if>
+			<istrue value="${continue.installing}" />
+			<then>
+				<input message="Developer machine mode?" addproperty="developer.machine.mode" validargs="y,n" defaultvalue="y" />
+				<mkdir dir="${install.dir}" />
+				<copy todir="${install.dir}" overwrite="true">
+					<fileset dir="${tomcat.src.dir}" />
+				</copy>
+				<!--
+				<copy todir="${install.dir}" file="${script.templates.dir}/startServer.bat" />
+				<copy todir="${install.dir}" file="${script.templates.dir}/startServer.sh" />
+				<copy todir="${install.dir}" file="${script.templates.dir}/stopServer.bat" />
+				<copy todir="${install.dir}" file="${script.templates.dir}/stopServer.sh" />
+				-->
+				<if>
+					<equals arg1="${developer.machine.mode}" arg2="y" />
+					<then>
+						<echo>Developer machine mode: copying catalina.bat and catalina.sh</echo>
+						<copy overwrite="true" file="${script.templates.dir}/catalina_developer.bat" tofile="${install.dir}/bin/catalina.bat" />
+						<copy overwrite="true" file="${script.templates.dir}/catalina_developer.sh" tofile="${install.dir}/bin/catalina.sh" />
+					</then>
+					<else>
+						<echo>Server machine mode: copying catalina.bat and catalina.sh</echo>
+						<copy overwrite="true" file="${script.templates.dir}/catalina_server.bat" tofile="${install.dir}/bin/catalina.bat" />
+						<copy overwrite="true" file="${script.templates.dir}/catalina_server.sh" tofile="${install.dir}/bin/catalina.sh" />
+					</else>
+				</if>
+				<replace file="${install.dir}/bin/catalina.bat" token="@@CATALINA_HOME@@" value="${install.dir}" />
+				<replace file="${install.dir}/bin/catalina.bat" token="rem set CATALINA" value="set CATALINA" />
+
+				<replace file="${install.dir}/bin/catalina.sh" token="@@CATALINA_HOME@@" value="${install.dir}" />
+				<replace file="${install.dir}/bin/catalina.sh" token="#CATALINA" value="CATALINA" />
+
+				<!--
+				<replaceregexp file="${install.dir}/bin/catalina.bat" flags="gim">
+					<regexp pattern="rem\s+(.*?@@CATALINA_HOME@@)" />
+					<substitution expression="\1" />
+				</replaceregexp>
+
+				<replaceregexp file="${install.dir}/bin/catalina.bat" flags="gim">
+					<regexp pattern="rem\s+(.*?@@CATALINA_HOME@@)" />
+					<substitution expression="\1" />
+				</replaceregexp>
+
+				<replaceregexp file="${install.dir}/bin/catalina.sh" flags="gim">
+					<regexp pattern="#\s*(.*?@@CATALINA_HOME@@)" />
+					<substitution expression="\1" />
+				</replaceregexp>
+				-->
+
+				<!-- make .sh files executable on UNIX system -->
+				<chmod dir="${install.dir}/bin" perm="711" includes="**/*.sh" />
+
+				<!-- set the operating system test properties -->
+				<condition property="isMac">
+					<os family="mac" />
+				</condition>
+				<condition property="isWindows">
+					<os family="windows" />
+				</condition>
+				<condition property="isUnix">
+					<os family="unix" />
+				</condition>
+
+				<echo message="AppServer has been installed to ${install.dir}. Please set environment variable CATALINA_HOME=${install.dir}" />
+				<echo message="Remember to adjust JVM options (such as min/max memory) in catalina.sh/catalina.bat too!" />
+				<if>
+					<isset property="isUnix" />
+					<then>
+						<echo message="Unix system: remember to chmod and chown ${install.dir} properly!" />
+					</then>
+				</if>
+			</then>
+		</if>
+	</target>
+</project>

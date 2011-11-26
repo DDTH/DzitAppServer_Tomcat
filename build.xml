@@ -1,0 +1,94 @@
+<project name="GPV-AppServer" default="help" basedir=".">
+	<property environment="env" />
+
+	<!-- directory properties -->
+	<property name="dir.resources" value="resources" />
+	<property name="dir.resources.ant-helper" value="${dir.resources}/ant_helper" />
+	<property name="dir.resources.lib" value="${dir.resources}/lib" />
+	<property name="dir.groovy" value="../../${dir.resources}/groovy" />
+	<property name="dir.installer" value="installer" />
+	<property name="dir.tmp" value="tmp" />
+
+	<path id="lib.path">
+		<fileset dir="${dir.resources.lib}" includes="*.jar" />
+	</path>
+
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+		<classpath>
+			<pathelement location="${dir.resources}/ant-contrib/ant-contrib-1.0b3.jar" />
+		</classpath>
+	</taskdef>
+	<taskdef resource="net/uworks/andariel/andariel.properties" classpathref="lib.path" />
+	<taskdef name="groovy" classname="org.codehaus.groovy.ant.Groovy" classpathref="lib.path" />
+
+	<import file="${dir.resources.ant-helper}/utils.xml" />
+
+	<target name="init">
+		<!-- directory properties -->
+		<property name="dir.disttest" value="disttest" />
+		<property name="dir.release" value="release" />
+		<property name="dir.script.templates" value="resources/script_templates" />
+		<property name="tomcat.src" value="Tomcat_7" />
+		<property name="product.name" value="GPV-AppServer" />
+		<property name="product.version" value="1.0" />
+
+		<!-- Create the time stamp -->
+		<tstamp />
+
+		<mkdir dir="${dir.disttest}" />
+		<mkdir dir="${dir.release}" />
+	</target>
+
+	<target name="help" description="Usage information">
+		<echo>ant -projecthelp for list of available targets</echo>
+		<echo>	ant help     : Display this screen</echo>
+		<echo>	ant disttest : Distribute for testing on dev machine</echo>
+		<echo>	ant release  : Build for release</echo>
+		<echo>	ant install  : Run the installer</echo>
+		<!--
+		<echo>	ant deployApp: Install/Deploy an application onto GPV App Server</echo>
+		-->
+	</target>
+
+	<target name="install" description="Install GPV App Server">
+		<ant dir="${dir.installer}" antfile="installer.xml" inheritall="false" />
+	</target>
+
+	<target name="disttest" depends="init" description="Distribute for testing on dev machine">
+		<delete dir="${dir.disttest}" quiet="true " />
+		<mkdir dir="${dir.disttest}" />
+		<copy todir="${dir.disttest}" overwrite="true">
+			<fileset dir="${tomcat.src}" />
+		</copy>
+		<copy overwrite="true" file="${dir.script.templates}/catalina_developer.bat" tofile="${dir.disttest}/bin/catalina.bat" />
+		<copy overwrite="true" file="${dir.script.templates}/catalina_developer.sh" tofile="${dir.disttest}/bin/catalina.sh" />
+
+		<replace file="${dir.disttest}/bin/catalina.bat" token="@@CATALINA_HOME@@" value="${dir.disttest}" />
+		<replace file="${dir.disttest}/bin/catalina.bat" token="rem set CATALINA" value="set CATALINA" />
+		<replace file="${dir.disttest}/bin/catalina.bat" token="rem set ACTIVEMQ" value="set ACTIVEMQ" />
+
+		<replace file="${dir.disttest}/bin/catalina.sh" token="@@CATALINA_HOME@@" value="${dir.disttest}" />
+		<replace file="${dir.disttest}/bin/catalina.sh" token="#CATALINA" value="CATALINA" />
+		<replace file="${dir.disttest}/bin/catalina.sh" token="#ACTIVEMQ" value="ACTIVEMQ" />
+	</target>
+
+	<target name="release" depends="init" description="Build for release">
+		<delete>
+			<fileset dir="${dir.release}">
+				<include name="**/${product.name}-${product.version}*.zip" />
+			</fileset>
+		</delete>
+		<zip destfile="${dir.release}/${product.name}-${product.version}-${DSTAMP}.zip" basedir="${tomcat.src}">
+		</zip>
+		<zip destfile="${dir.release}/${product.name}-${product.version}-${DSTAMP}.zip" basedir="script_templates" update="true">
+		</zip>
+		<!--
+		<delete>
+			<fileset dir="${release}/${thirdpartylibs}" />
+		</delete>
+		<copy todir="${release}/${thirdpartylibs}">
+			<fileset dir="${tomcat.src}/lib/thirdparty" />
+		</copy>
+		-->
+	</target>
+</project>

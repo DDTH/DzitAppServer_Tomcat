@@ -1,0 +1,54 @@
+<project basedir="." name="Installer Utilities">
+	<macrodef name="UTIL_xpathReplace">
+		<attribute name="filename" />
+		<attribute name="xpath" />
+		<attribute name="value" />
+		<sequential>
+			<groovy src="${resources-groovy.dir}/xpathReplace.groovy">
+				<arg value="filename=@{filename}" />
+				<arg value="xpath=@{xpath}" />
+				<arg value="value=@{value}" />
+			</groovy>
+		</sequential>
+	</macrodef>
+
+	<!--
+	<macrodef name="UTIL_runSQLFile">
+		<attribute name="filename" />
+		<attribute name="dbDriver" />
+		<attribute name="dbUrl" />
+		<attribute name="dbUsername" />
+		<attribute name="dbPassword" />
+		<sequential>
+			<groovy src="${resources-groovy.dir}/runSQLFile.groovy">
+				<arg value="filename=@{filename}" />
+				<arg value="driver=@{dbDriver}" />
+				<arg value="url=@{dbUrl}" />
+				<arg value="username=@{dbUsername}" />
+				<arg value="password=@{dbPassword}" />
+			</groovy>
+		</sequential>
+	</macrodef>
+	-->
+
+	<macrodef name="UTIL_runSQLFile_psql">
+		<attribute name="psql.app" default="psql" />
+		<attribute name="psql.host" default="localhost" />
+		<attribute name="psql.port" default="5432" />
+		<attribute name="psql.username" default="postgres" />
+		<attribute name="psql.password" default="" />
+		<attribute name="psql.database" />
+		<attribute name="psql.filename" />
+		<sequential>
+			<exec executable="@{psql.app}">
+				<env key="PGPASSWORD" value="@{psql.password}" />
+				<arg value="-w" />
+				<arg line="-h @{psql.host}" />
+				<arg line="-p @{psql.port}" />
+				<arg line="-U @{psql.username}" />
+				<arg line="-d @{psql.database}" />
+				<arg line="-f @{psql.filename}" />
+			</exec>
+		</sequential>
+	</macrodef>
+</project>
