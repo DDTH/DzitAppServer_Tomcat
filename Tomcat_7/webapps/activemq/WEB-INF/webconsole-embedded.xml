@@ -45,14 +45,14 @@
 
 	<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
 		<property name="brokerURL"
-			value="vm://gpvActiveMQBroker?marshal=false&amp;create=false&amp;broker.persistent=true&amp;jms.useAsyncSend=false&amp;jms.dispatchAsync=false&amp;jms.redeliveryPolicy.maximumRedeliveries=3" />
+			value="vm://dzitActiveMQBroker?marshal=false&amp;create=false&amp;broker.persistent=true&amp;jms.useAsyncSend=false&amp;jms.dispatchAsync=false&amp;jms.redeliveryPolicy.maximumRedeliveries=3" />
 		<!--
 			<property name="userName" value="${activemq.username}" /> <property
 			name="password" value="${activemq.password}" />
 		-->
 	</bean>
 
-	<bean id="gpvActiveMQBroker" class="org.apache.activemq.xbean.BrokerFactoryBean">
+	<bean id="dzitActiveMQBroker" class="org.apache.activemq.xbean.BrokerFactoryBean">
 		<property name="config" value="file:${activemq.base}/conf/activemq.xml" />
 		<property name="start" value="true" />
 	</bean>

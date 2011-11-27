@@ -1,4 +1,4 @@
-<project name="GPV-AppServer" default="help" basedir=".">
+<project name="Dzit-AppServer" default="help" basedir=".">
 	<property environment="env" />
 
 	<!-- directory properties -->
@@ -29,7 +29,7 @@
 		<property name="dir.release" value="release" />
 		<property name="dir.script.templates" value="resources/script_templates" />
 		<property name="tomcat.src" value="Tomcat_7" />
-		<property name="product.name" value="GPV-AppServer" />
+		<property name="product.name" value="Dzit-AppServer" />
 		<property name="product.version" value="1.0" />
 
 		<!-- Create the time stamp -->
@@ -46,11 +46,11 @@
 		<echo>	ant release  : Build for release</echo>
 		<echo>	ant install  : Run the installer</echo>
 		<!--
-		<echo>	ant deployApp: Install/Deploy an application onto GPV App Server</echo>
+		<echo>	ant deployApp: Install/Deploy an application onto Dzit App Server</echo>
 		-->
 	</target>
 
-	<target name="install" description="Install GPV App Server">
+	<target name="install" description="Install Dzit App Server">
 		<ant dir="${dir.installer}" antfile="installer.xml" inheritall="false" />
 	</target>
 

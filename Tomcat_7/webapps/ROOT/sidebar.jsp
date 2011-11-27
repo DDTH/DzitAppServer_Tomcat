@@ -28,6 +28,6 @@
 				
 	<h2>Links</h2>
 	<ul class="sidemenu">
-		<li><a href="http://www.gpv.com.vn/">GPV Website</a></li>
+		<li><a href="http://www.ddth.org/">DDTH.ORG</a></li>
 	</ul>			
 </div>

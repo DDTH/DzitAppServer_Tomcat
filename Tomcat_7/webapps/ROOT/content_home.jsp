@@ -11,7 +11,7 @@
 		<p class="post-by">posted by: <a href="#">Thanh Ba Nguyen</a></p>
 		-->
 		<p><strong><%= PRODUCT_NAME %> <%= PRODUCT_VERSION %></strong> is an application server built on
-		<a href="http://tomcat.apache.org/">Apache Tomcat</a>, customized for GPV's applications.</p>
+		<a href="http://tomcat.apache.org/">Apache Tomcat</a>, customized for Dzit's applications.</p>
 		
 		<!--
 		<p class="post-footer align-left">					
