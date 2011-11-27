@@ -8,6 +8,17 @@
 	<property name="dir.groovy" value="../../${dir.resources}/groovy" />
 	<property name="dir.installer" value="installer" />
 	<property name="dir.tmp" value="tmp" />
+	<property name="dir.disttest" value="disttest" />
+	<property name="dir.release" value="release" />
+	<property name="dir.script.templates" value="resources/script_templates" />
+	<property name="tomcat.src" value="Tomcat_7" />
+	<property name="product.name" value="Dzit-AppServer" />
+	<property name="product.version" value="1.0" />
+
+	<tstamp />
+
+	<mkdir dir="${dir.disttest}" />
+	<mkdir dir="${dir.release}" />
 
 	<path id="lib.path">
 		<fileset dir="${dir.resources.lib}" includes="*.jar" />
@@ -22,22 +33,6 @@
 	<taskdef name="groovy" classname="org.codehaus.groovy.ant.Groovy" classpathref="lib.path" />
 
 	<import file="${dir.resources.ant-helper}/utils.xml" />
-
-	<target name="init">
-		<!-- directory properties -->
-		<property name="dir.disttest" value="disttest" />
-		<property name="dir.release" value="release" />
-		<property name="dir.script.templates" value="resources/script_templates" />
-		<property name="tomcat.src" value="Tomcat_7" />
-		<property name="product.name" value="Dzit-AppServer" />
-		<property name="product.version" value="1.0" />
-
-		<!-- Create the time stamp -->
-		<tstamp />
-
-		<mkdir dir="${dir.disttest}" />
-		<mkdir dir="${dir.release}" />
-	</target>
 
 	<target name="help" description="Usage information">
 		<echo>ant -projecthelp for list of available targets</echo>
@@ -54,9 +49,12 @@
 		<ant dir="${dir.installer}" antfile="installer.xml" inheritall="false" />
 	</target>
 
-	<target name="disttest" depends="init" description="Distribute for testing on dev machine">
-		<delete dir="${dir.disttest}" quiet="true " />
-		<mkdir dir="${dir.disttest}" />
+	<target name="disttest" description="Distribute for testing on dev machine">
+		<delete>
+			<fileset dir="${dir.disttest}">
+				<include name="**/*.*" />
+			</fileset>
+		</delete>
 		<copy todir="${dir.disttest}" overwrite="true">
 			<fileset dir="${tomcat.src}" />
 		</copy>
@@ -72,7 +70,7 @@
 		<replace file="${dir.disttest}/bin/catalina.sh" token="#ACTIVEMQ" value="ACTIVEMQ" />
 	</target>
 
-	<target name="release" depends="init" description="Build for release">
+	<target name="release" description="Build for release">
 		<delete>
 			<fileset dir="${dir.release}">
 				<include name="**/${product.name}-${product.version}*.zip" />
