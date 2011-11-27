@@ -61,7 +61,7 @@
 		<%! class LibFileFilter implements FileFilter {
 			public boolean accept(File file) {
 				if (file.getName().toLowerCase().endsWith(".jar") 
-						|| (file.isDirectory() && !file.getName().toLowerCase().contains("svn"))) {
+						|| (file.isDirectory() && !file.getName().toLowerCase().startsWith(".svn"))) {
 					return true;
 				}
 				return false;			      
@@ -107,9 +107,6 @@
 		
 		<a name="RuntimeInfo"></a>
 		<h2>Runtime Info</h2>
-		<!--
-		<p class="post-by">posted by: <a href="#">Thanh Ba Nguyen</a></p>
-		-->
 		<p>
 		<%
 		Runtime rt = Runtime.getRuntime();

@@ -17,6 +17,7 @@
 		<li><a href="index.jsp?page=apps">Deployed Apps</a></li>
 		-->
 		<li><a href="/manager">Manager App</a></li>
+		<li><a href="/activemq">ActiveMQ App</a></li>
 		<li><a href="/docs">Tomcat Documentation</a></li>
 		<%
 		for ( Object o : customMainMenuList ) {
