@@ -14,8 +14,8 @@ Author: Thanh Ba Nguyen
 	<property name="resources.dir" value="../resources" />
 	<property name="resources-lib.dir" value="${resources.dir}/lib" />
 	<property name="resources-groovy.dir" value="${resources.dir}/groovy" />
-	<property name="tomcat.src.dir" value="../Tomcat_6" />
-	<property name="script.templates.dir" value="../resources/script_templates" />
+	<property name="tomcat.src.dir" value="../Tomcat_7" />
+	<property name="script.templates.dir" value="../resources/script_templates7" />
 
 	<target name="install" description="Install App Server">
 		<!-- check if env CATALINA_HOME is set -->
