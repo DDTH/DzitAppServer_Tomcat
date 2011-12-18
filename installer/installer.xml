@@ -80,9 +80,11 @@ Author: Thanh Ba Nguyen
 				</if>
 				<replace file="${install.dir}/bin/catalina.bat" token="@@CATALINA_HOME@@" value="${install.dir}" />
 				<replace file="${install.dir}/bin/catalina.bat" token="rem set CATALINA" value="set CATALINA" />
+				<replace file="${install.dir}/bin/catalina.bat" token="rem set ACTIVEMQ" value="set ACTIVEMQ" />
 
 				<replace file="${install.dir}/bin/catalina.sh" token="@@CATALINA_HOME@@" value="${install.dir}" />
 				<replace file="${install.dir}/bin/catalina.sh" token="#CATALINA" value="CATALINA" />
+				<replace file="${install.dir}/bin/catalina.sh" token="#ACTIVEMQ" value="ACTIVEMQ" />
 
 				<!--
 				<replaceregexp file="${install.dir}/bin/catalina.bat" flags="gim">
