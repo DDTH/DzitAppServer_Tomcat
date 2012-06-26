@@ -9,8 +9,10 @@ final static Map<String, FileEntry> CACHE_RESOURCE_CONTENT = new ConcurrentHashM
 
 final static Map<String, String> THIRDPARTY_NAME_MAPPING = new HashMap<String, String>();
 static {
-	THIRDPARTY_NAME_MAPPING.put("dojo", "/thirdparty/dojo-1.6.1.zip");
-	THIRDPARTY_NAME_MAPPING.put("dojo-1.6.1", "/thirdparty/dojo-1.6.1.zip");
+	THIRDPARTY_NAME_MAPPING.put("dojo", "/thirdparty/dojo-1.7.2.zip");
+	THIRDPARTY_NAME_MAPPING.put("dojo-1.7.2", "/thirdparty/dojo-1.7.2.zip");
+	THIRDPARTY_NAME_MAPPING.put("bootstrap", "/thirdparty/bootstrap-2.0.4.zip");
+	THIRDPARTY_NAME_MAPPING.put("bootstrap-2.0.4", "/thirdparty/bootstrap-2.0.4.zip");
 }
 	
 class FileEntry {
