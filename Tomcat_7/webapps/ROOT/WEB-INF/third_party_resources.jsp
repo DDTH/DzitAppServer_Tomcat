@@ -13,6 +13,8 @@ static {
 	THIRDPARTY_NAME_MAPPING.put("dojo-1.7.2", "/thirdparty/dojo-1.7.2.zip");
 	THIRDPARTY_NAME_MAPPING.put("bootstrap", "/thirdparty/bootstrap-2.0.4.zip");
 	THIRDPARTY_NAME_MAPPING.put("bootstrap-2.0.4", "/thirdparty/bootstrap-2.0.4.zip");
+	THIRDPARTY_NAME_MAPPING.put("jquery", "/thirdparty/jquery-1.7.2.zip");
+	THIRDPARTY_NAME_MAPPING.put("jquery-1.7.2", "/thirdparty/jquery-1.7.2.zip");
 }
 	
 class FileEntry {
