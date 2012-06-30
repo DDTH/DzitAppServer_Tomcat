@@ -82,15 +82,16 @@
 			be refused / - [tcpNoDelay]: set to false if having issue with the OS
 		-->
 		<Connector port="8080" protocol="org.apache.coyote.http11.Http11Protocol"
-			allowTrace="false" asyncTimeout="5000" enableLookups="false"
-			maxPostSize="131072" maxSavePostSize="-1" redirectPort="8443" scheme="http"
-			URIEncoding="UTF-8" acceptCount="100000" acceptorThreadCount="64"
-			connectionTimeout="10000" connectionUploadTimeout="60000"
-			disableUploadTimeout="false" maxConnections="128" maxHttpHeaderSize="4096"
-			maxKeepAliveRequests="100" maxThreads="128" minSpareThreads="64"
-			processorCache="128" socketBuffer="8192" tcpNoDelay="true"
-			socket.performanceConnectionTime="2" socket.performanceLatency="1"
-			socket.performanceBandwidth="0" disableKeepAlivePercentage="50" />
+			redirectPort="8443" scheme="http" URIEncoding="UTF-8"
+			allowTrace="false" enableLookups="false"
+			maxPostSize="65536" maxParameterCount="0" maxSavePostSize="0" 
+			acceptCount="1000000" acceptorThreadCount="16"
+			connectionLinger="0" connectionTimeout="5000" connectionUploadTimeout="10000" disableUploadTimeout="false"
+			keepAliveTimeout="0" maxConnections="1024" maxHttpHeaderSize="4096"
+			maxKeepAliveRequests="1" maxThreads="512" minSpareThreads="32"
+			processorCache="512" socketBuffer="-1" tcpNoDelay="true"
+			socket.tcpNoDelay="true" socket.soKeepAlive="false" socket.soLingerOn="false" socket.soLingerTime="0"
+			socket.soTimeout="5000" disableKeepAlivePercentage="0" />
 
 		<!--
 			HTTP/1.1/NIO connector: - [pollerThreadCount]: The number of threads
@@ -104,17 +105,20 @@
 			with the OS
 		-->
 		<Connector port="8081" protocol="org.apache.coyote.http11.Http11NioProtocol"
-			allowTrace="false" asyncTimeout="5000" enableLookups="false"
-			maxPostSize="131072" maxSavePostSize="-1" redirectPort="8443" scheme="http"
-			URIEncoding="UTF-8" acceptCount="100000" acceptorThreadCount="64"
-			connectionTimeout="10000" connectionUploadTimeout="60000"
-			disableUploadTimeout="false" maxConnections="10240"
-			maxHttpHeaderSize="4096" maxKeepAliveRequests="100" maxThreads="128"
-			minSpareThreads="64" processorCache="128" socketBuffer="8192"
-			tcpNoDelay="true" socket.performanceConnectionTime="2"
-			socket.performanceLatency="1" socket.performanceBandwidth="0"
-			pollerThreadCount="16" selectorTimeout="1000" socket.appReadBufSize="4096"
-			socket.appWriteBufSize="4096" />
+			redirectPort="8443" scheme="http" URIEncoding="UTF-8"
+			allowTrace="false" enableLookups="false"
+			maxPostSize="65536" maxParameterCount="0" maxSavePostSize="0" 
+			acceptCount="1000000" acceptorThreadCount="16"
+			connectionLinger="0" connectionTimeout="5000" connectionUploadTimeout="10000" disableUploadTimeout="false"
+			keepAliveTimeout="0" maxConnections="10240" maxHttpHeaderSize="4096"
+			maxKeepAliveRequests="1" maxThreads="512" minSpareThreads="32"
+			processorCache="512" socketBuffer="-1" tcpNoDelay="true"
+			socket.tcpNoDelay="true" socket.soKeepAlive="false" socket.soLingerOn="false" socket.soLingerTime="0"
+			socket.soTimeout="5000"
+			pollerThreadCount="16" selectorTimeout="1000" useComet="true" useSendfile="true"
+			socket.appReadBufSize="1024" socket.appWriteBufSize="1024"
+			socket.bufferPool="512" socket.processorCache="512" socket.keyCache="512" socket.eventCache="512"
+			selectorPool.maxSelectors="512" />
 
 
 		<!--
