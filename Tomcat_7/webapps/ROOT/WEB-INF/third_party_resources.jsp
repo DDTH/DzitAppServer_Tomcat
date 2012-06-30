@@ -15,6 +15,8 @@ static {
 	THIRDPARTY_NAME_MAPPING.put("bootstrap-2.0.4", "/thirdparty/bootstrap-2.0.4.zip");
 	THIRDPARTY_NAME_MAPPING.put("jquery", "/thirdparty/jquery-1.7.2.zip");
 	THIRDPARTY_NAME_MAPPING.put("jquery-1.7.2", "/thirdparty/jquery-1.7.2.zip");
+	THIRDPARTY_NAME_MAPPING.put("fontawesome", "/thirdparty/fontawesome-2.0.zip");
+	THIRDPARTY_NAME_MAPPING.put("fontawesome-2.0", "/thirdparty/fontawesome-2.0.zip");
 }
 	
 class FileEntry {
