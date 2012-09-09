@@ -54,17 +54,12 @@ Author: Thanh Ba Nguyen
 		<if>
 			<istrue value="${continue.installing}" />
 			<then>
-				<input message="Developer machine mode?" addproperty="developer.machine.mode" validargs="y,n" defaultvalue="y" />
 				<mkdir dir="${install.dir}" />
 				<copy todir="${install.dir}" overwrite="true">
 					<fileset dir="${tomcat.src.dir}" />
 				</copy>
-				<!--
-				<copy todir="${install.dir}" file="${script.templates.dir}/startServer.bat" />
-				<copy todir="${install.dir}" file="${script.templates.dir}/startServer.sh" />
-				<copy todir="${install.dir}" file="${script.templates.dir}/stopServer.bat" />
-				<copy todir="${install.dir}" file="${script.templates.dir}/stopServer.sh" />
-				-->
+
+				<input message="Developer machine mode?" addproperty="developer.machine.mode" validargs="y,n" defaultvalue="y" />
 				<if>
 					<equals arg1="${developer.machine.mode}" arg2="y" />
 					<then>
@@ -78,6 +73,20 @@ Author: Thanh Ba Nguyen
 						<copy overwrite="true" file="${script.templates.dir}/catalina_server.sh" tofile="${install.dir}/bin/catalina.sh" />
 					</else>
 				</if>
+
+				<input message="Enable ActiveMQ?" addproperty="activemq.enabled" validargs="y,n" defaultvalue="y" />
+				<if>
+					<equals arg1="${activemq.enabled}" arg2="y" />
+					<then>
+						<echo>ActiveMQ: enabled</echo>
+					</then>
+					<else>
+						<echo>ActiveMQ: disabled</echo>
+						<delete dir="${install.dir}/webapps/activemq">
+						</delete>
+					</else>
+				</if>
+
 				<replace file="${install.dir}/bin/catalina.bat" token="@@CATALINA_HOME@@" value="${install.dir}" />
 				<replace file="${install.dir}/bin/catalina.bat" token="rem set CATALINA" value="set CATALINA" />
 				<replace file="${install.dir}/bin/catalina.bat" token="rem set ACTIVEMQ" value="set ACTIVEMQ" />
@@ -85,23 +94,6 @@ Author: Thanh Ba Nguyen
 				<replace file="${install.dir}/bin/catalina.sh" token="@@CATALINA_HOME@@" value="${install.dir}" />
 				<replace file="${install.dir}/bin/catalina.sh" token="#CATALINA" value="CATALINA" />
 				<replace file="${install.dir}/bin/catalina.sh" token="#ACTIVEMQ" value="ACTIVEMQ" />
-
-				<!--
-				<replaceregexp file="${install.dir}/bin/catalina.bat" flags="gim">
-					<regexp pattern="rem\s+(.*?@@CATALINA_HOME@@)" />
-					<substitution expression="\1" />
-				</replaceregexp>
-
-				<replaceregexp file="${install.dir}/bin/catalina.bat" flags="gim">
-					<regexp pattern="rem\s+(.*?@@CATALINA_HOME@@)" />
-					<substitution expression="\1" />
-				</replaceregexp>
-
-				<replaceregexp file="${install.dir}/bin/catalina.sh" flags="gim">
-					<regexp pattern="#\s*(.*?@@CATALINA_HOME@@)" />
-					<substitution expression="\1" />
-				</replaceregexp>
-				-->
 
 				<!-- make .sh files executable on UNIX system -->
 				<chmod dir="${install.dir}/bin" perm="711" includes="**/*.sh" />

@@ -11,7 +11,7 @@
 		<p class="post-by">posted by: <a href="#">Thanh Ba Nguyen</a></p>
 		-->
 		<p><strong><%= PRODUCT_NAME %> <%= PRODUCT_VERSION %></strong> is an application server built on
-		<a href="http://tomcat.apache.org/">Apache Tomcat</a>, customized for Dzit's applications.</p>
+		<a href="http://tomcat.apache.org/">Apache Tomcat</a>, customized for DDTH's applications.</p>
 		
 		<!--
 		<p class="post-footer align-left">					
@@ -23,7 +23,7 @@
 		
 		<a name="VersionInfo"></a>
 		<h2>Version Info</h2>
-		<p><%= PRODUCT_NAME %> <%= PRODUCT_VERSION %></p>
+		<p><%= PRODUCT_NAME %> <%= PRODUCT_VERSION %>. See <a href="index.jsp?page=history">Version History</a>.</p>
 		<h3>Tomcat</h3>
 		<ul>
 			<li><a href="http://tomcat.apache.org/"><%= org.apache.catalina.util.ServerInfo.getServerInfo() %></a></li>
@@ -85,23 +85,25 @@
 		    }
 		}
 		%>
-		<%		
-		String catalinaHome = System.getProperty("catalina.base");
-		if (catalinaHome != null) {
-			File libDir = new File(catalinaHome + "/lib");
-			if (libDir != null && libDir.exists()) {					        	
-	        	File[] children = libDir.listFiles(new LibFileFilter());        
-	        	if (children != null && children.length > 0) {
-	        		for (int i = 0; i < children.length; i++) {			        			
-	        			File current = children[i];
-			        	if (current.isDirectory()) {					        	
-				        	displayDirectory(current, out);
-				        } 
-	        		}		        				
-	        	}		
-			}	
-		} else {
-			out.println("<h3>Cannot find the CATALINA_HOME</h3>");    		
+		<%
+		{
+			String catalinaHome = System.getProperty("catalina.base");
+			if (catalinaHome != null) {
+				File libDir = new File(catalinaHome + "/lib");
+				if (libDir != null && libDir.exists()) {					        	
+		        	File[] children = libDir.listFiles(new LibFileFilter());        
+		        	if (children != null && children.length > 0) {
+		        		for (int i = 0; i < children.length; i++) {			        			
+		        			File current = children[i];
+				        	if (current.isDirectory()) {					        	
+					        	displayDirectory(current, out);
+					        } 
+		        		}		        				
+		        	}		
+				}	
+			} else {
+				out.println("<h3>Cannot find the CATALINA_HOME</h3>");    		
+			}
 		}
 		%>
 		

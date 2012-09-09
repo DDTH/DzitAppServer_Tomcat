@@ -106,7 +106,7 @@
 #ACTIVEMQ_HOME=$CATALINA_HOME/activemq;export ACTIVEMQ_HOME
 #ACTIVEMQ_BASE=$ACTIVEMQ_HOME;export ACTIVEMQ_BASE
 #CATALINA_PID=$CATALINA_HOME/tomcat.pid
-#CATALINA_OPTS="-Dcatalina.home=$CATALINA_HOME -Dcatalina.base=$CATALINA_BASE -Dorg.apache.activemq.UseDedicatedTaskRunner=false -Dactivemq.home=$ACTIVEMQ_HOME -Dactivemq.base=$ACTIVEMQ_BASE -server -Xms2048m -Xmx2048m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true"
+#CATALINA_OPTS="-Dcatalina.home=$CATALINA_HOME -Dcatalina.base=$CATALINA_BASE -Dorg.apache.activemq.UseDedicatedTaskRunner=false -Dactivemq.home=$ACTIVEMQ_HOME -Dactivemq.base=$ACTIVEMQ_BASE -Dorg.apache.activemq.store.kahadb.LOG_SLOW_ACCESS_TIME=200 -server -Xms2048m -Xmx2048m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true"
 
 # OS specific support.  $var _must_ be set to either true or false.
 cygwin=false

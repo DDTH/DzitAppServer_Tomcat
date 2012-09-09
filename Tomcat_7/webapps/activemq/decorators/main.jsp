@@ -119,6 +119,14 @@
 
                                                     <li><a href="xml/topics.jsp" title="View the topics as XML">XML</a></li>
                                                 </ul>
+                                                <H3>Subscribers Views</H3>
+
+                                                <ul class="alternate" type="square">
+
+
+
+                                                    <li><a href="xml/subscribers.jsp" title="View the subscribers as XML">XML</a></li>
+                                                </ul>
                                                 <H3>Useful Links</H3>
 
                                                 <ul class="alternate" type="square">
@@ -149,7 +157,7 @@
             <div class="footer_l">
                 <div class="footer_r">
                     <div>
-                        Copyright 2005-2011 The Apache Software Foundation.
+                        Copyright 2005-2012 The Apache Software Foundation.
 
                         (<a href="?printable=true">printable version</a>)
                     </div>

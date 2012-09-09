@@ -1,4 +1,5 @@
 <%@page session="false" %>
+<%@page import="java.io.*" %>
 <div id="sidebar">
 	<!--
 	<h2>Search Box</h2>	
@@ -16,8 +17,22 @@
 		<!-- 
 		<li><a href="index.jsp?page=apps">Deployed Apps</a></li>
 		-->
+		<!--
 		<li><a href="/manager">Manager App</a></li>
-		<li><a href="/activemq">ActiveMQ App</a></li>
+		-->
+		<%
+		{
+			String catalinaHome = System.getProperty("catalina.base");
+			if (catalinaHome != null) {
+				File activeMqDir = new File(catalinaHome + "/webapps/activemq");
+				if (activeMqDir.isDirectory()) {
+					%>
+					<li><a href="/activemq">ActiveMQ App</a></li>
+					<%
+				}
+			}
+		}
+		%>
 		<li><a href="/docs">Tomcat Documentation</a></li>
 		<%
 		for ( Object o : customMainMenuList ) {
@@ -29,6 +44,6 @@
 				
 	<h2>Links</h2>
 	<ul class="sidemenu">
-		<li><a href="http://www.ddth.org/">DDTH.ORG</a></li>
+		<li><a href="https://github.com/DDTH/DzitAppServer_Tomcat">DzitAppServer Source</a></li>
 	</ul>			
 </div>

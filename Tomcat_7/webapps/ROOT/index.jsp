@@ -29,8 +29,8 @@
 
 	<!-- content-wrap starts here -->
 	<c:choose>
-		<c:when test="${param.page=='apps'}">
-			<jsp:include page="content_apps.jsp" />
+		<c:when test="${param.page=='history'}">
+			<jsp:include page="content_history.jsp" />
 		</c:when>
 		<c:when test="${param.page=='error404'}">
 			<jsp:include page="content_error404.jsp" />

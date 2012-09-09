@@ -1,12 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Licensed to the Apache Software Foundation (ASF) under one or more contributor 
+	license agreements. See the NOTICE file distributed with this work for additional 
+	information regarding copyright ownership. The ASF licenses this file to 
+	You under the Apache License, Version 2.0 (the "License"); you may not use 
+	this file except in compliance with the License. You may obtain a copy of 
+	the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required 
+	by applicable law or agreed to in writing, software distributed under the 
+	License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS 
+	OF ANY KIND, either express or implied. See the License for the specific 
+	language governing permissions and limitations under the License. -->
+
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
          http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 	version="2.4">
 
-	<description>Apache ActiveMQ Web Console</description>
+	<description>
+    Apache ActiveMQ Web Console
+  </description>
 	<display-name>ActiveMQ Console</display-name>
 
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- Configuration of the SiteMesh Filter. -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 	<filter>
 		<filter-name>sitemesh</filter-name>
 		<filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
@@ -17,6 +33,9 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- Expose Spring POJOs to JSP . -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 	<filter>
 		<filter-name>spring</filter-name>
 		<filter-class>org.apache.activemq.web.filter.ApplicationContextFilter</filter-class>
@@ -26,6 +45,10 @@
 		<filter-name>spring</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- ActiveMQ servlets -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
 	<!-- the subscription REST servlet -->
 	<servlet>
@@ -89,10 +112,17 @@
 	</filter-mapping>
 
 
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- Spring listener. -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 	<listener>
 		<listener-class>org.apache.activemq.web.WebConsoleStarter</listener-class>
 	</listener>
 
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- Configuration of the Spring MVC dispatcher -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -110,15 +140,15 @@
 	</welcome-file-list>
 
 
-	<!--
-		JNDI Stuff <resource-ref>
-		<res-ref-name>jms/connectionFactory</res-ref-name>
-		<res-type>javax.jms.ConnectionFactory</res-type>
-		<res-auth>Container</res-auth> </resource-ref> <resource-ref>
-		<res-ref-name>jmx/url</res-ref-name>
-		<res-type>java.lang.String</res-type> </resource-ref>
-	-->
+	<!-- JNDI Stuff <resource-ref> <res-ref-name>jms/connectionFactory</res-ref-name> 
+		<res-type>javax.jms.ConnectionFactory</res-type> <res-auth>Container</res-auth> 
+		</resource-ref> <resource-ref> <res-ref-name>jmx/url</res-ref-name> <res-type>java.lang.String</res-type> 
+		</resource-ref> -->
 
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- Factor out common headers in JSP pages -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 	<jsp-config>
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
@@ -148,6 +178,10 @@
 		<description>The role that is required to access the ActiveMQ Admin Console</description>
 		<role-name>activemq</role-name>
 	</security-role>
+
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+	<!-- Error pages -->
+	<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
 	<error-page>
 		<error-code>404</error-code>

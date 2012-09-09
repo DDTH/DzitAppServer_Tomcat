@@ -105,7 +105,7 @@ rem set CATALINA_BASE=%CATALINA_HOME%
 rem set ACTIVEMQ_HOME=%CATALINA_HOME%\activemq
 rem set ACTIVEMQ_BASE=%ACTIVEMQ_HOME%
 rem set CATALINA_PID=%CATALINA_BASE%\tomcat.pid
-rem set CATALINA_OPTS=-Dcatalina.home=%CATALINA_HOME% -Dcatalina.base=%CATALINA_BASE% -Dorg.apache.activemq.UseDedicatedTaskRunner=false -Dactivemq.home=%ACTIVEMQ_HOME% -Dactivemq.base=%ACTIVEMQ_BASE% -server -Xms2048m -Xmx2048m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true
+rem set CATALINA_OPTS=-Dcatalina.home=%CATALINA_HOME% -Dcatalina.base=%CATALINA_BASE% -Dorg.apache.activemq.UseDedicatedTaskRunner=false -Dactivemq.home=%ACTIVEMQ_HOME% -Dactivemq.base=%ACTIVEMQ_BASE% -Dorg.apache.activemq.store.kahadb.LOG_SLOW_ACCESS_TIME=200 -server -Xms2048m -Xmx2048m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true
 
 rem Suppress Terminate batch job on CTRL+C
 if not ""%1"" == ""run"" goto mainEntry
