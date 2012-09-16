@@ -109,7 +109,7 @@ JPDA_ADDRESS=8000
 #ACTIVEMQ_HOME=$CATALINA_HOME/activemq;export ACTIVEMQ_HOME
 #ACTIVEMQ_BASE=$ACTIVEMQ_HOME;export ACTIVEMQ_BASE
 #CATALINA_PID=$CATALINA_BASE/tomcat.pid
-#CATALINA_OPTS="-Dcatalina.home=$CATALINA_HOME -Dcatalina.base=$CATALINA_BASE -Dorg.apache.activemq.UseDedicatedTaskRunner=false -Dactivemq.home=$ACTIVEMQ_HOME -Dactivemq.base=$ACTIVEMQ_BASE -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dorg.apache.activemq.store.kahadb.LOG_SLOW_ACCESS_TIME=200 -server -Xms128m -Xmx256m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true -XX:+PrintTenuringDistribution -verbose:gc -Xloggc:$CATALINA_HOME/logs/garbage.log -XX:+PrintGCDetails"
+#CATALINA_OPTS="-Dcatalina.home=$CATALINA_HOME -Dcatalina.base=$CATALINA_BASE -Dorg.apache.activemq.UseDedicatedTaskRunner=false -Dactivemq.home=$ACTIVEMQ_HOME -Dactivemq.base=$ACTIVEMQ_BASE -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dorg.apache.activemq.store.kahadb.LOG_SLOW_ACCESS_TIME=200 -server -Xms128m -Xmx256m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:PrintFLSStatistics=1 -XX:PrintCMSStatistics=1 -XX:+PrintTenuringDistribution -XX:+PrintGCDetails -XX:+PrintGCDateStamps -verbose:gc -Xloggc:%CATALINA_HOME%/logs/garbage.log"
 
 # OS specific support.  $var _must_ be set to either true or false.
 cygwin=false
