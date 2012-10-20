@@ -9,12 +9,16 @@ final static Map<String, FileEntry> CACHE_RESOURCE_CONTENT = new ConcurrentHashM
 
 final static Map<String, String> THIRDPARTY_NAME_MAPPING = new HashMap<String, String>();
 static {
-	THIRDPARTY_NAME_MAPPING.put("dojo", "/thirdparty/dojo-1.7.2.zip");
+	THIRDPARTY_NAME_MAPPING.put("dojo", "/thirdparty/dojo-1.8.1.zip");
 	THIRDPARTY_NAME_MAPPING.put("dojo-1.7.2", "/thirdparty/dojo-1.7.2.zip");
+	THIRDPARTY_NAME_MAPPING.put("dojo-1.8.1", "/thirdparty/dojo-1.8.1.zip");
+	
 	THIRDPARTY_NAME_MAPPING.put("bootstrap", "/thirdparty/bootstrap-2.0.4.zip");
 	THIRDPARTY_NAME_MAPPING.put("bootstrap-2.0.4", "/thirdparty/bootstrap-2.0.4.zip");
+	
 	THIRDPARTY_NAME_MAPPING.put("jquery", "/thirdparty/jquery-1.7.2.zip");
 	THIRDPARTY_NAME_MAPPING.put("jquery-1.7.2", "/thirdparty/jquery-1.7.2.zip");
+	
 	THIRDPARTY_NAME_MAPPING.put("fontawesome", "/thirdparty/fontawesome-2.0.zip");
 	THIRDPARTY_NAME_MAPPING.put("fontawesome-2.0", "/thirdparty/fontawesome-2.0.zip");
 }
