@@ -108,7 +108,7 @@ rem set CATALINA_BASE=%CATALINA_HOME%
 rem set ACTIVEMQ_HOME=%CATALINA_HOME%\activemq
 rem set ACTIVEMQ_BASE=%ACTIVEMQ_HOME%
 rem set CATALINA_PID=%CATALINA_BASE%\tomcat.pid
-rem set CATALINA_OPTS=-Dcatalina.home=%CATALINA_HOME% -Dcatalina.base=%CATALINA_BASE% -Dorg.apache.activemq.UseDedicatedTaskRunner=false -Dactivemq.home=%ACTIVEMQ_HOME% -Dactivemq.base=%ACTIVEMQ_BASE% -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dorg.apache.activemq.store.kahadb.LOG_SLOW_ACCESS_TIME=200 -server -Xms128m -Xmx256m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:PrintFLSStatistics=1 -XX:PrintCMSStatistics=1 -XX:+PrintTenuringDistribution -XX:+PrintGCDetails -XX:+PrintGCDateStamps -verbose:gc -Xloggc:%CATALINA_HOME%\logs\garbage.log
+rem set CATALINA_OPTS=-Dcatalina.home=%CATALINA_HOME% -Dcatalina.base=%CATALINA_BASE% -Dspring.profiles.active=dev -Dorg.apache.activemq.UseDedicatedTaskRunner=false -Dactivemq.home=%ACTIVEMQ_HOME% -Dactivemq.base=%ACTIVEMQ_BASE% -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dorg.apache.activemq.store.kahadb.LOG_SLOW_ACCESS_TIME=200 -server -Xms128m -Xmx256m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:PrintFLSStatistics=1 -XX:PrintCMSStatistics=1 -XX:+PrintTenuringDistribution -XX:+PrintGCDetails -XX:+PrintGCDateStamps -verbose:gc -Xloggc:%CATALINA_HOME%\logs\garbage.log
 
 rem Suppress Terminate batch job on CTRL+C
 if not ""%1"" == ""run"" goto mainEntry
