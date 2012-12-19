@@ -1,10 +1,7 @@
-<%@page session="false" pageEncoding="UTF-8"
-%><%@page import="java.io.*"
-%><%@page import="java.util.*"
-%><%@page import="java.util.concurrent.*"
-%><%@page import="java.util.zip.*"
-%><%@page import="org.apache.commons.codec.digest.*"
-%><%!
+<%@page session="false" pageEncoding="UTF-8"%><%@page import="java.io.*"%><%@page
+	import="java.util.*"%><%@page import="java.util.concurrent.*"%><%@page
+	import="java.util.zip.*"%><%@page
+	import="org.apache.commons.codec.digest.*"%><%!
 /* 3rd party configuration settings */
 final static Map<String, FileEntry> CACHE_RESOURCE_CONTENT = new ConcurrentHashMap<String, FileEntry>();
 
@@ -116,7 +113,8 @@ FileEntry getFileEntry(String zipFilename, String resourceName) throws Exception
 		}
 	}
 }
-%><%
+%>
+<%
 String uri = request.getRequestURI();
 uri = uri.replaceAll("^\\/+", "").replaceAll("\\/+$", "");
 String[] tokens = uri.split("[\\/]+");
@@ -154,7 +152,7 @@ if ( cacheEntry == null ) {
     response.setContentType(cacheEntry.getMimeType());
     response.setHeader("ETag", cacheEntry.getEtag());
     response.setDateHeader("Last-Modified", cacheEntry.getTime());
-    response.setDateHeader("Expires", cacheEntry.getTime() + 10*3600000L); //10 hours in millisecs
+    response.setDateHeader("Expires", System.currentTimeMillis() + 10*3600000L); //10 hours in millisecs
     response.setIntHeader("Max-Age", 3600*10); //10 hours in seconds
     response.setHeader("Cache-control", "public");
     String headerIfNoneMatch = request.getHeader("If-None-Match");
