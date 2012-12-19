@@ -163,12 +163,13 @@ if ( cacheEntry == null ) {
             response.setStatus(304);
             return;
         }
-    } else {
-	    if ( request.getHeader("If-Modified-Since") != null ) {
-	        response.setStatus(304);
-	        return;
-	    }
     }
+    //else {
+	//    if ( request.getHeader("If-Modified-Since") != null ) {
+	//        response.setStatus(304);
+	//        return;
+	//    }
+    //}
     
     //content
     response.getOutputStream().write(cacheEntry.getContent());
