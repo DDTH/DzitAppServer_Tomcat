@@ -171,5 +171,6 @@ if ( cacheEntry == null ) {
     
     //content
     response.getOutputStream().write(cacheEntry.getContent());
+    response.getOutputStream().flush();
 }
 %>
