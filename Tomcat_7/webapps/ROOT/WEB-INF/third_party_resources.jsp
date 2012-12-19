@@ -3,6 +3,7 @@
 %><%@page import="java.util.*"
 %><%@page import="java.util.concurrent.*"
 %><%@page import="java.util.zip.*"
+%><%@page import="org.apache.commons.codec.digest.*"
 %><%!
 /* 3rd party configuration settings */
 final static Map<String, FileEntry> CACHE_RESOURCE_CONTENT = new ConcurrentHashMap<String, FileEntry>();
@@ -28,12 +29,18 @@ class FileEntry {
 	private long size;
 	private byte[] content;
 	private long time;
+	private String etag;
 	
 	public FileEntry(String mimeType, long size, byte[] content, long time) {
 		this.mimeType = mimeType;
 		this.size = size;
 		this.content = content;
 		this.time = time;
+		this.etag = DigestUtils.md5Hex(content);
+	}
+	
+	public String getEtag() {
+	    return etag;
 	}
 	
 	public String getMimeType() {
@@ -141,10 +148,29 @@ if ( cacheEntry == null ) {
 if ( cacheEntry == null ) {
 	response.sendError(404);
 	return;
+} else {
+    //headers
+    response.setContentLength((int)cacheEntry.getSize());
+    response.setContentType(cacheEntry.getMimeType());
+    response.setHeader("ETag", cacheEntry.getEtag());
+    response.setDateHeader("Last-Modified", cacheEntry.getTime());
+    response.setDateHeader("Expires", cacheEntry.getTime() + 10*3600000L); //10 hours in millisecs
+    response.setIntHeader("Max-Age", 3600*10); //10 hours in seconds
+    response.setHeader("Cache-control", "public");
+    String headerIfNoneMatch = request.getHeader("If-None-Match");
+    if ( headerIfNoneMatch != null ) {
+        if ( headerIfNoneMatch.equals(cacheEntry.getEtag()) ) {
+            response.setStatus(304);
+            return;
+        }
+    } else {
+	    if ( request.getHeader("If-Modified-Since") != null ) {
+	        response.setStatus(304);
+	        return;
+	    }
+    }
+    
+    //content
+    response.getOutputStream().write(cacheEntry.getContent());
 }
-response.setContentLength((int)cacheEntry.getSize());
-response.setContentType(cacheEntry.getMimeType());
-response.setDateHeader("Last-Modified", cacheEntry.getTime());
-response.setDateHeader("Expires", cacheEntry.getTime() + 3600000L);
-response.getOutputStream().write(cacheEntry.getContent());
 %>

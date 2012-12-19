@@ -77,13 +77,13 @@
 			be refused / - [tcpNoDelay]: set to false if having issue with the OS
 		-->
 		<Connector port="8080" protocol="org.apache.coyote.http11.Http11Protocol"
-			redirectPort="8443" scheme="http" URIEncoding="UTF-8"
+			redirectPort="8443" scheme="http" URIEncoding="UTF-8" compression="on" compressionMinSize="4096" compressableMimeType="text/html, text/xml, text/plain, text/css, text/javascript, application/javascript, application/json"
 			allowTrace="false" enableLookups="false"
 			maxPostSize="65536" maxSavePostSize="0" 
-			acceptCount="1000000" acceptorThreadCount="16"
+			acceptCount="1000000" acceptorThreadCount="2"
 			connectionLinger="0" connectionTimeout="5000" connectionUploadTimeout="10000" disableUploadTimeout="false"
 			keepAliveTimeout="0" maxConnections="1024" maxHttpHeaderSize="4096"
-			maxKeepAliveRequests="1" maxThreads="512" minSpareThreads="32"
+			maxKeepAliveRequests="1" maxThreads="32" minSpareThreads="4"
 			processorCache="512" socketBuffer="-1" tcpNoDelay="true"
 			socket.tcpNoDelay="true" socket.soKeepAlive="false" socket.soLingerOn="false" socket.soLingerTime="0"
 			socket.soTimeout="5000" disableKeepAlivePercentage="0" />
@@ -100,17 +100,17 @@
 			with the OS
 		-->
 		<Connector port="8081" protocol="org.apache.coyote.http11.Http11NioProtocol"
-			redirectPort="8443" scheme="http" URIEncoding="UTF-8"
+			redirectPort="8443" scheme="http" URIEncoding="UTF-8" compression="on" compressionMinSize="4096" compressableMimeType="text/html, text/xml, text/plain, text/css, text/javascript, application/javascript, application/json"
 			allowTrace="false" enableLookups="false"
 			maxPostSize="65536" maxSavePostSize="0" 
-			acceptCount="1000000" acceptorThreadCount="16"
+			acceptCount="1000000" acceptorThreadCount="2"
 			connectionLinger="0" connectionTimeout="5000" connectionUploadTimeout="10000" disableUploadTimeout="false"
 			keepAliveTimeout="0" maxConnections="10240" maxHttpHeaderSize="4096"
-			maxKeepAliveRequests="1" maxThreads="512" minSpareThreads="32"
+			maxKeepAliveRequests="1" maxThreads="32" minSpareThreads="4"
 			processorCache="512" socketBuffer="-1" tcpNoDelay="true"
 			socket.tcpNoDelay="true" socket.soKeepAlive="false" socket.soLingerOn="false" socket.soLingerTime="0"
 			socket.soTimeout="5000"
-			pollerThreadCount="16" selectorTimeout="1000" useComet="true" useSendfile="true"
+			pollerThreadCount="4" selectorTimeout="1000" useComet="true" useSendfile="true"
 			socket.appReadBufSize="1024" socket.appWriteBufSize="1024"
 			socket.bufferPool="512" socket.processorCache="512" socket.keyCache="512" socket.eventCache="512"
 			selectorPool.maxSelectors="512" />
