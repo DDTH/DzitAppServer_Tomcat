@@ -26,6 +26,11 @@
 		<servlet-name>ThirdPartyResources</servlet-name>
 		<jsp-file>/WEB-INF/third_party_resources.jsp</jsp-file>
 	</servlet>
+	<servlet>
+        <servlet-name>HazelcastBootstrap</servlet-name>
+        <jsp-file>/WEB-INF/hazelcast_bootstrap.jsp</jsp-file>
+        <load-on-startup>10</load-on-startup>
+    </servlet>
 
 	<servlet-mapping>
 		<servlet-name>ThirdPartyResources</servlet-name>
