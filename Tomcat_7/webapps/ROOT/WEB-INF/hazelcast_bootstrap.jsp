@@ -6,12 +6,8 @@
 @Override
 public void init() throws ServletException {
      super.init();
-     ServletConfig servletConfig = getServletConfig();
-     
-     //Config cfg = new Config();
-     //HazelcastInstance instance = Hazelcast.newHazelcastInstance(cfg);
+     //ServletConfig servletConfig = getServletConfig();     
      HazelcastInstance instance = Hazelcast.getDefaultInstance();
-     //System.out.println("!!!HELLO!!!" + instance);
 }
 %>
 <%

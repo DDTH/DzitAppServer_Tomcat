@@ -35,5 +35,6 @@ limitations under the License.
     -->
     <role rolename="manager-gui"/>
     <role rolename="activemq"/>
-    <user username="tomcat" password="jerrymouse" roles="manager-gui, activemq"/>
+    <role rolename="hazelcast-gui"/>
+    <user username="tomcat" password="j3rrym0us3" roles="manager-gui, activemq, hazelcast-gui"/>
 </tomcat-users>

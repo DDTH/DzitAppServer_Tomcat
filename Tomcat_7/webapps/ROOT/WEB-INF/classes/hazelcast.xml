@@ -20,9 +20,9 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <group>
         <name>DzitAppServer</name>
-        <password>jerrymouse</password>
+        <password>h2z3lc2st</password>
     </group>
-    <management-center enabled="true" update-interval="5">http://localhost:8080/hazelcast</management-center>
+    <management-center enabled="true" update-interval="5">http://127.0.0.1:8080/hazelcast</management-center>
     <network>
         <port auto-increment="true">8700</port>
         <outbound-ports>
