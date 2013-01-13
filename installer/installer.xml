@@ -90,10 +90,12 @@ Author: Thanh Ba Nguyen
 				<replace file="${install.dir}/bin/catalina.bat" token="@@CATALINA_HOME@@" value="${install.dir}" />
 				<replace file="${install.dir}/bin/catalina.bat" token="rem set CATALINA" value="set CATALINA" />
 				<replace file="${install.dir}/bin/catalina.bat" token="rem set ACTIVEMQ" value="set ACTIVEMQ" />
+				<replace file="${install.dir}/bin/catalina.bat" token="rem set OPTS" value="set OPTS" />
 
 				<replace file="${install.dir}/bin/catalina.sh" token="@@CATALINA_HOME@@" value="${install.dir}" />
 				<replace file="${install.dir}/bin/catalina.sh" token="#CATALINA" value="CATALINA" />
 				<replace file="${install.dir}/bin/catalina.sh" token="#ACTIVEMQ" value="ACTIVEMQ" />
+				<replace file="${install.dir}/bin/catalina.sh" token="#OPTS" value="OPTS" />
 
 				<!-- make .sh files executable on UNIX system -->
 				<chmod dir="${install.dir}/bin" perm="711" includes="**/*.sh" />

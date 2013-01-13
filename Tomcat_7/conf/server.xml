@@ -15,6 +15,11 @@
 		/docs/config/server.html
 	-->
 <Server port="8005" shutdown="SHUTDOWN">
+    <!-- JMX listener: http://tomcat.apache.org/tomcat-7.0-doc/config/listeners.html -->
+    <Listener className="org.apache.catalina.mbeans.JmxRemoteLifecycleListener"
+        rmiRegistryPortPlatform="9001"
+        rmiServerPortPlatform="9002" />
+
 	<!--
 		Security listener. Documentation at /docs/config/listeners.html
 		<Listener className="org.apache.catalina.security.SecurityListener" />

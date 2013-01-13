@@ -64,10 +64,12 @@
 		<replace file="${dir.disttest}/bin/catalina.bat" token="@@CATALINA_HOME@@" value="${dir.disttest}" />
 		<replace file="${dir.disttest}/bin/catalina.bat" token="rem set CATALINA" value="set CATALINA" />
 		<replace file="${dir.disttest}/bin/catalina.bat" token="rem set ACTIVEMQ" value="set ACTIVEMQ" />
+		<replace file="${dir.disttest}/bin/catalina.bat" token="rem set OPTS" value="set OPTS" />
 
 		<replace file="${dir.disttest}/bin/catalina.sh" token="@@CATALINA_HOME@@" value="${dir.disttest}" />
 		<replace file="${dir.disttest}/bin/catalina.sh" token="#CATALINA" value="CATALINA" />
 		<replace file="${dir.disttest}/bin/catalina.sh" token="#ACTIVEMQ" value="ACTIVEMQ" />
+		<replace file="${dir.disttest}/bin/catalina.sh" token="#OPTS" value="OPTS" />
 	</target>
 
 	<target name="release" description="Build for release">
