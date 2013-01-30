@@ -113,8 +113,7 @@ FileEntry getFileEntry(String zipFilename, String resourceName) throws Exception
 		}
 	}
 }
-%>
-<%
+%><%
 String uri = request.getRequestURI();
 uri = uri.replaceAll("^\\/+", "").replaceAll("\\/+$", "");
 String[] tokens = uri.split("[\\/]+");
