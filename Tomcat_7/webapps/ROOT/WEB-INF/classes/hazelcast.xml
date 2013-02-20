@@ -38,7 +38,7 @@
             -->
         </outbound-ports>
         <join>
-            <multicast enabled="true">
+            <multicast enabled="false">
                 <multicast-group>224.2.2.3</multicast-group>
                 <multicast-port>54327</multicast-port>
                 <multicast-timeout-seconds>2</multicast-timeout-seconds>
@@ -50,7 +50,7 @@
                 </trusted-interfaces>
                 -->
             </multicast>
-            <tcp-ip enabled="false">
+            <tcp-ip enabled="true">
                 <interface>127.0.0.1</interface>
             </tcp-ip>
             <aws enabled="false">
@@ -215,26 +215,26 @@
     <multimap name="default">
         <value-collection-type>SET</value-collection-type>
         <entry-listeners>
-            <entry-listener include-value="true" local="true">com.hazelcast.examples.EntryListener</entry-listener>
+            <!-- <entry-listener include-value="true" local="true">com.hazelcast.examples.EntryListener</entry-listener>  -->
         </entry-listeners>
     </multimap>
 
     <topic name="default">
         <message-listeners>
-            <message-listener>com.hazelcast.examples.MessageListener</message-listener>
+            <!-- <message-listener>com.hazelcast.examples.MessageListener</message-listener> -->
         </message-listeners>
     </topic>
 
     <semaphore name="default">
         <initial-permits>10</initial-permits>
         <semaphore-factory enabled="true">
-            <class-name>com.hazelcast.examples.MySemaphoreFactory</class-name>
+            <!-- <class-name>com.hazelcast.examples.MySemaphoreFactory</class-name> -->
         </semaphore-factory>
     </semaphore>
 
     <merge-policies>
         <map-merge-policy name="hz.MERGING_WINS">
-            <class-name>com.hazelcast.examples.MyOwnMergePolicy</class-name>
+            <!-- <class-name>com.hazelcast.examples.MyOwnMergePolicy</class-name> -->
         </map-merge-policy>
     </merge-policies>
 
