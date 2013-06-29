@@ -109,7 +109,8 @@
 #OPTS_JVM="-server -Xms128m -Xmx128m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true -XX:+UseParNewGC -XX:+UseConcMarkSweepGC"
 #OPTS_JMX="-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Djava.rmi.server.hostname=127.0.0.1"
 #OPTS_ACTIVEMQ="-Dactivemq.home=%ACTIVEMQ_HOME% -Dactivemq.base=%ACTIVEMQ_BASE% -Dorg.apache.activemq.UseDedicatedTaskRunner=false -Dorg.apache.activemq.store.kahadb.LOG_SLOW_ACCESS_TIME=200"
-#CATALINA_OPTS="-Dcatalina.home=$CATALINA_HOME -Dcatalina.base=$CATALINA_BASE -Dhazelcast.mancenter.home=$CATALINA_BASE/data/hazelcast -Dspring.profiles.active=production $OPTS_ACTIVEMQ $OPTS_JMX $OPTS_JVM"
+#OPTS_DASP="-Ddasp.logs.home=$CATALINA_HOME/logs -Ddasp.data.home=$CATALINA_HOME/data/dasp -Dhazelcast.mancenter.home=$JETTY_HOME/data/hazelcast -Dspring.profiles.active=production"
+#CATALINA_OPTS="-Dcatalina.home=$CATALINA_HOME -Dcatalina.base=$CATALINA_BASE $OPTS_DASP $OPTS_ACTIVEMQ $OPTS_JMX $OPTS_JVM"
 
 # OS specific support.  $var _must_ be set to either true or false.
 cygwin=false

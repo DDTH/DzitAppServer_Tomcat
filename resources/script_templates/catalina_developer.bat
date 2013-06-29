@@ -111,7 +111,8 @@ rem set CATALINA_PID=%CATALINA_BASE%\tomcat.pid
 rem set OPTS_JVM=-server -Xms128m -Xmx128m -Djava.net.preferIPv4Stack=true -Djava.awt.headless=true -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:PrintFLSStatistics=1 -XX:PrintCMSStatistics=1 -XX:+PrintTenuringDistribution -XX:+PrintGCDetails -XX:+PrintGCDateStamps -verbose:gc -Xloggc:%CATALINA_HOME%\logs\garbage.log
 rem set OPTS_JMX=-Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Djava.rmi.server.hostname=127.0.0.1
 rem set OPTS_ACTIVEMQ=-Dactivemq.home=%ACTIVEMQ_HOME% -Dactivemq.base=%ACTIVEMQ_BASE% -Dorg.apache.activemq.UseDedicatedTaskRunner=false -Dorg.apache.activemq.store.kahadb.LOG_SLOW_ACCESS_TIME=200
-rem set CATALINA_OPTS=-Dcatalina.home=%CATALINA_HOME% -Dcatalina.base=%CATALINA_BASE% -Dhazelcast.mancenter.home=%CATALINA_BASE%\data\hazelcast -Dspring.profiles.active=dev %OPTS_ACTIVEMQ% %OPTS_JMX% %OPTS_JVM%
+rem set OPTS_DASP=-Ddasp.logs.home=%CATALINA_HOME%\logs -Ddasp.data.home=%CATALINA_HOME%\data\dasp -Dhazelcast.mancenter.home=%CATALINA_HOME%\data\hazelcast -Dspring.profiles.active=dev
+rem set CATALINA_OPTS=-Dcatalina.home=%CATALINA_HOME% -Dcatalina.base=%CATALINA_BASE% %OPTS_DASP% %OPTS_ACTIVEMQ% %OPTS_JMX% %OPTS_JVM%
 
 rem Suppress Terminate batch job on CTRL+C
 if not ""%1"" == ""run"" goto mainEntry
